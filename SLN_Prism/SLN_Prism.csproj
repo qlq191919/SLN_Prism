@@ -5,9 +5,40 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\1.png" />
+    <None Remove="Assets\111.png" />
+    <None Remove="Assets\130.png" />
+    <None Remove="Assets\145.png" />
+    <None Remove="Assets\79.png" />
+    <None Remove="Assets\Logo.png" />
+    <None Remove="Assets\mf.png" />
+    <None Remove="Assets\导航展开.png" />
+    <None Remove="Assets\导航收起.png" />
+    <None Remove="Assets\注销.png" />
+    <None Remove="Assets\注销红.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="3.0.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Login\" />
     <Folder Include="Models\" />
+    <Folder Include="Style\" />
+    <Folder Include="Control\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\1.png" />
+    <Resource Include="Assets\111.png" />
+    <Resource Include="Assets\130.png" />
+    <Resource Include="Assets\145.png" />
+    <Resource Include="Assets\79.png" />
+    <Resource Include="Assets\Logo.png" />
+    <Resource Include="Assets\mf.png" />
+    <Resource Include="Assets\导航展开.png" />
+    <Resource Include="Assets\导航收起.png" />
+    <Resource Include="Assets\注销.png" />
+    <Resource Include="Assets\注销红.png" />
   </ItemGroup>
 </Project>

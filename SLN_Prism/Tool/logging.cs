@@ -81,7 +81,7 @@ namespace SLN_Prism.Tool
         /// <param name="startTime">开始时间</param>
         /// <param name="endTime">结束时间</param>
         /// <returns></returns>
-        public DataTable readLogDt(DateTime startTime, DateTime endTime)
+        public DataTable ReadLogDt(DateTime startTime, DateTime endTime)
         {
             DataTable loggingDt = new DataTable();//定义日志数据表
             loggingDt.Columns.Add("时间", Type.GetType("System.DateTime"));

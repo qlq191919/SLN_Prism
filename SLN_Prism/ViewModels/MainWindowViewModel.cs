@@ -6,7 +6,7 @@ namespace SLN_Prism.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private string _title = "Prism Application";
+        private string _title = "SLN";
         private readonly IRegionManager _regionManager;
         public string Title
         {
@@ -19,6 +19,7 @@ namespace SLN_Prism.ViewModels
             this._regionManager = regionManager;
             //_regionManager.RegisterViewWithRegion("MainRegion", typeof(MD));
            _regionManager.RegisterViewWithRegion("MainRegion", typeof(TEST));
+            _regionManager.RegisterViewWithRegion("LeftRegion", typeof(Navigation));
             // _regionManager.RequestNavigate("ContentRegion", "NavigationPage");
         }
     }

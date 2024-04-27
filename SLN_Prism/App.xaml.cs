@@ -1,4 +1,5 @@
-﻿using Prism.Ioc;
+﻿using Prism.DryIoc;
+using Prism.Ioc;
 using SLN_Prism.Views;
 using System.Windows;
 
@@ -7,8 +8,9 @@ namespace SLN_Prism
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App
+    public partial class App: PrismApplication
     {
+        
         protected override Window CreateShell()
         {
             return Container.Resolve<MainWindow>();

@@ -46,7 +46,7 @@ namespace SLN_Prism.Tool
         /// <param name="endTime">结束时间</param>
         /// <param name="path">路径</param>
         /// <returns></returns>
-        public DataTable readLogDt(DateTime startTime, DateTime endTime)
+        public DataTable ReadLogDt(DateTime startTime, DateTime endTime)
         {
             /*
              * 历史文本格式 例子如下:
