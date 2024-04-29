@@ -50,7 +50,7 @@
                      materialDesign:ShadowAssist.ShadowDepth="Depth0" 
                      Height="53" Width="300" 
                      materialDesign:ButtonAssist.CornerRadius="10"
-                     FontSize="18" Content="登录" ></Button>
+                     FontSize="18" Content="登录" Cursor="Hand" ></Button>
 
                 <Button Margin="0,20,0,0" 
                     x:Name="signupBtn"
