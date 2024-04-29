@@ -14,6 +14,7 @@ namespace SLN_Prism.ViewModels {
             Title = "TEST";
             Message = "This is a readonly message.";
             UpdateCommand = new DelegateCommand(() => { Message = "updated message.\r\n"; });
+            //复合命令
             UpdateCommand1 = new DelegateCommand(() => { Message += "UPDATED message.\r\n"; });
             UpdateCommand2 = new DelegateCommand(() => { Message += "UPDATED2 message."; });
             AllCommand = new CompositeCommand();

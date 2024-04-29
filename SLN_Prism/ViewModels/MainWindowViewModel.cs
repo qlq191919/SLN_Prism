@@ -17,8 +17,8 @@ namespace SLN_Prism.ViewModels
         public MainWindowViewModel(IRegionManager regionManager)
         {
             this._regionManager = regionManager;
-            //_regionManager.RegisterViewWithRegion("MainRegion", typeof(MD));
-           _regionManager.RegisterViewWithRegion("MainRegion", typeof(TEST));
+            _regionManager.RegisterViewWithRegion("MainRegion", typeof(Login));
+          // _regionManager.RegisterViewWithRegion("MainRegion", typeof(TEST));
             _regionManager.RegisterViewWithRegion("LeftRegion", typeof(Navigation));
             // _regionManager.RequestNavigate("ContentRegion", "NavigationPage");
         }

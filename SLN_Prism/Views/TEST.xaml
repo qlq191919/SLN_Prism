@@ -64,10 +64,10 @@
                   VerticalAlignment="Stretch"
                   HorizontalScrollBarVisibility="Auto"
                   VerticalScrollBarVisibility="Auto"
+                  IsReadOnly="True"
                   FontSize="14"
                   Foreground="Red"
-                  Background="LightGray"
-                  />
+                  Background="LightGray" GridLinesVisibility="All" HeadersVisibility="Column"/>
 
     </Grid>
 </UserControl>
