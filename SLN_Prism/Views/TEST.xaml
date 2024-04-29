@@ -15,9 +15,9 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <Label Content="输入报警类型："
+            <Label Content="输入报警内容："
                     FontSize="14"
-                    Foreground="Black"/>
+                    Foreground="White"/>
             <TextBox Text="{Binding Text1, Mode=TwoWay}"                    
                      FontSize="24"
                      Margin="10"
@@ -25,9 +25,9 @@
                      BorderThickness="1"
                      BorderBrush="AliceBlue"
                      Background="LightGray"/>
-            <Label Content="输入报警内容："
+            <Label Content="输入报警类型："
                     FontSize="14"
-                    Foreground="Black"/>
+                    Foreground="White"/>
             <TextBox Text="{Binding Text2}"
                      FontSize="24"
                      Margin="10"

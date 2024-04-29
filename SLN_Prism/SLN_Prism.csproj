@@ -26,6 +26,10 @@
     <Folder Include="Models\" />
     <Folder Include="Style\" />
     <Folder Include="Control\" />
+    <Folder Include="ViewModels\ShowDialog\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModuleA\ModuleA.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\1.png" />

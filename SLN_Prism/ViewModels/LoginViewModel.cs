@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SLN_Prism.ViewModels.ShowDialog
+namespace SLN_Prism.ViewModels
 {
     internal class LoginViewModel
     {

@@ -4,10 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SLN_Prism.Views"
+             xmlns:prism="http://prismlibrary.com/" 
+                prism:ViewModelLocator.AutoWireViewModel="True"
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <materialDesign:Card UniformCornerRadius="15" 
                      Background="{DynamicResource MaterialDesignPaper}"
                      Margin="25"
@@ -50,7 +53,7 @@
                      materialDesign:ShadowAssist.ShadowDepth="Depth0" 
                      Height="53" Width="300" 
                      materialDesign:ButtonAssist.CornerRadius="10"
-                     FontSize="18" Content="登录" ></Button>
+                     FontSize="18" Content="登录" Cursor="Hand" ></Button>
 
                 <Button Margin="0,20,0,0" 
                     x:Name="signupBtn"

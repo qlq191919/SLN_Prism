@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SLN_Prism.Views
 {
     /// <summary>
-    /// Navigation.xaml 的交互逻辑
+    /// Operation.xaml 的交互逻辑
     /// </summary>
-    public partial class Navigation : UserControl
+    public partial class Operation : UserControl
     {
-        public Navigation()
+        public Operation()
         {
             InitializeComponent();
         }
