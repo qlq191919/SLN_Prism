@@ -9,7 +9,7 @@
         xmlns:ext="clr-namespace:SLN_Prism.Extensions"
         Title="MainWindow"
         Width="1280"
-        Height="768"
+        Height="800"
         prism:ViewModelLocator.AutoWireViewModel="True"
         AllowsTransparency="True"
         Background="{DynamicResource MaterialDesignPaper}"
