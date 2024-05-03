@@ -291,5 +291,218 @@
                 </StackPanel>
             </GroupBox>
         </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" >
+
+            <GroupBox  Grid.Column="0"  Header="连接信息" FontSize="14" >
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="Local连接:" Margin="5"/>
+                        <Button Content="{Binding LocalConnectionStatus}"
+                                     Command="{Binding LocalConnectCommand}"
+                                     Width="80" />
+                    </StackPanel>
+                    <Border Height="1" Margin="5" Background="Gray" />
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="总线状态: " Margin="6"/>
+                        <Button Content="{Binding EtherCatStatus}"
+                                     Command="{Binding EtherCatConnectCommand}"
+                                      Width="80" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="连接轴数: " Margin="6"/>
+                        <TextBlock Background="LightGray"
+                                        Text="{Binding AxisCount}"
+                                        Height="30"
+                                         Width="80" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Column="0" Header="轴参数设置" FontSize="14">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="脉冲当量:" Margin="5"/>
+                        <TextBox Text="{Binding Units}"
+                                  Width="80" Height="30"
+                                  Background="LightGray"
+                                  Margin="5" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="运行速度:" Margin="5"/>
+                        <TextBox Text="{Binding Speed}"
+                                 Width="80" Height="30"
+                                 Background="LightGray"
+                                 Margin="5" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="加速度 :" Margin="5,5,15,5"/>
+                        <TextBox Text="{Binding AccelSpeed}"
+                                 Width="80" Height="30"
+                                 Background="LightGray"
+                                 Margin="5" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="减速度 :" Margin="5,5,15,5"/>
+                        <TextBox Text="{Binding DecelSpeed}"
+                                 Width="80" Height="30"
+                                 Background="LightGray"
+                                 Margin="5" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="回零速度:" Margin="5"/>
+                        <TextBox Text="{Binding HomeHighSpeed}"
+                                 Width="80" Height="30"
+                                 Background="LightGray"
+                                 Margin="5" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="爬行速度:" Margin="5"/>
+                        <TextBox Text="{Binding HomeLowSpeed}"
+                                 Width="80" Height="30"
+                                 Background="LightGray"
+                                 Margin="5" />
+                    </StackPanel>
+                    <Button Content="参数写入"
+                            Command="{Binding SetParameterCommand}"
+                            Width="150" Height="60"
+                            Margin="5" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" >
+            <GroupBox  Header="轴状态显示" FontSize="14" >
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="轴名称:" Margin="5"/>
+                        <ComboBox ItemsSource="{Binding AxisList}"
+                                  SelectedValue="{Binding SelectedAxis}"
+                                  Width="100"
+                                  Margin="5" />
+                        <Border Width="1" Margin="5"  Background="Gray" />
+                        <Label Content="轴类型:" Margin="5"/>
+                        <ComboBox ItemsSource="{Binding EnumAxisType}"
+                                   SelectedValue="{Binding SelectedAxisType}"
+                                   Width="100"
+                                  Margin="5" />
+                        <Border Width="1" Margin="5"  Background="Gray" />
+                        <Label Content="回原模式:" Margin="5"/>
+                        <ComboBox ItemsSource="{Binding EnumHomeMode}"
+                                   SelectedValue="{Binding SelectedHomeMode}"
+                                   Width="100"
+                                  Margin="5" />
+                        <Border Width="1" Margin="5"  Background="Gray" />
+                        <Label Content="轴状态:" Margin="5"/>
+                        <Label Content="{Binding AxisStatus}"
+                                 Width="60" />
+                        <Border Width="1" Margin="5"  Background="Gray" />
+                        <Label Content="当前运动状态:" Margin="5"/>
+                        <Label Content="{Binding IsMoving}"
+                               Width="80" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="命令速度:" Margin="5"/>
+                        <Label Content="{Binding dSpeed}"
+                               Margin="5" Width="50" />
+                        <Border Width="1" Margin="5"  Background="Gray" />
+                        <Label Content="反馈速度:" Margin="5"/>
+                        <Label Content="{Binding mSpeed}"
+                               Margin="5" Width="50" />
+                        <Border Width="1" Margin="5"  Background="Gray" />
+                        <Label Content="命令位置:" Margin="5"/>
+                        <Label Content="{Binding dPosition}"
+                               Width="80"/>
+                        <Border Width="1" Margin="5"  Background="Gray" />
+                        <Label Content="反馈位置:" Margin="5"/>
+                        <Label Content="{Binding mPosition}"
+                               Width="80" />
+                        <Border Width="1" Margin="5"  Background="Gray" />
+                        <Label Content="轴使能:" Margin="15,5,5,5"/>
+                        <ToggleButton Height="30" Width="120"
+                                 Command="{Binding EnableAxisCommand}"
+                                Margin="5" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="原点信号" 
+                               HorizontalAlignment="Stretch" 
+                               Foreground="White"
+                               Margin="15,5,5,5"/>
+                        <Ellipse Width="20" Height="20"
+                                 HorizontalAlignment="Center" 
+                                 Margin="5,5,15,5">
+                            <Ellipse.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF7E4040"/>
+                                    <GradientStop Color="#FFF81E1E" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Ellipse.Fill>
+                            <!--Fill="{Binding HomeSignalColor}">-->
+                        </Ellipse>
+
+                        <Label   Content="正限位信号" 
+                                 HorizontalAlignment="Stretch" 
+                                 Foreground="White"
+                                 Margin="15,5,5,5"/>
+                        <Ellipse Width="20" Height="20"
+                                 HorizontalAlignment="Center" 
+                                 Margin="5,5,15,5">
+                            <Ellipse.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF7E4040"/>
+                                    <GradientStop Color="#FFF81E1E" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Label   Content="负限位信号" 
+                                HorizontalAlignment="Stretch" 
+                                Foreground="White"
+                                Margin="15,5,5,5"/>
+                        <Ellipse Width="20" Height="20"
+                                 HorizontalAlignment="Center" 
+                                 Margin="5,5,15,5">
+                            <Ellipse.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF7E4040"/>
+                                    <GradientStop Color="#FFF81E1E" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Border Width="1" Margin="5"  Background="Gray" />
+                        <Label Content="报警信息:" Margin="5"/>
+                        <TextBlock Text="{Binding AlarmLevel}"
+                                   Width="80" Height="30"
+                                   Background="LightGray"
+                                   Margin="5" />
+                        <TextBlock Text="{Binding AlarmMessage}"
+                                    Width="250" Height="30"
+                                    Background="LightGray"
+                                    Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox  Header="轴控制" FontSize="14"  Margin="0,6.5,0,0">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="设定距离:" Margin="18"/>
+                        <TextBox Text="{Binding dPosition}"
+                                 Width="80" Height="30"
+                                    Background="LightGray"/>
+                        <Button Content="复位"
+                                Command="{Binding ClearAlarmCommand}" 
+                                Margin="15"/>
+                        <Button Content="急停" 
+                                Command="{Binding StopCommand}"
+                                Background="PaleVioletRed"
+                                 Margin="15"/>
+
+
+                    </StackPanel>
+                </StackPanel>
+
+            </GroupBox>
+        </StackPanel>
     </Grid>
 </UserControl>
