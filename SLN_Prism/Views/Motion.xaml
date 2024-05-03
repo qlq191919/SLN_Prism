@@ -287,6 +287,27 @@
                             Width="150" Height="40"
                             ToolTip="保存位置坐标(单位: Units),负数表示反方向运动"
                             Margin="5" />
+                    <DataGrid ItemsSource="{Binding CustomPositionList}"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              CanUserReorderColumns="False"
+                              CanUserResizeColumns="False"
+                              CanUserResizeRows="False"
+                              IsReadOnly="True"                                                          
+                              Margin="5">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="名称" 
+                                                Binding="{Binding Name}"
+                                                Width="60"/>
+                            <DataGridTextColumn Header="坐标"
+                                                Binding="{Binding Position}"
+                                                Width="60"/>
+                            <DataGridTextColumn Header="操作"
+                                                Binding="{Binding DeleteCommand}"
+                                                Width="60"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
 
                 </StackPanel>
             </GroupBox>

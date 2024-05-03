@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace SLN_Prism.Zmotion
 {
-    internal class Axis
+   
+    public class Axis
     {
         /// <summary>
         /// 轴索引
@@ -83,6 +84,11 @@ namespace SLN_Prism.Zmotion
         /// 减速度
         /// </summary>
         public double decelSpeed { get; set; }
+
+       
+        
+        
+
         
     }
 }
