@@ -290,7 +290,7 @@
                     <DataGrid ItemsSource="{Binding CustomPositionList}"
                               AutoGenerateColumns="False"
                               CanUserAddRows="False"
-                              CanUserDeleteRows="False"
+                              CanUserDeleteRows="True"
                               CanUserReorderColumns="False"
                               CanUserResizeColumns="False"
                               CanUserResizeRows="False"
@@ -303,9 +303,18 @@
                             <DataGridTextColumn Header="坐标"
                                                 Binding="{Binding Position}"
                                                 Width="60"/>
-                            <DataGridTextColumn Header="操作"
-                                                Binding="{Binding DeleteCommand}"
-                                                Width="60"/>
+                            <DataGridTemplateColumn Header="操作"                                               
+                                                Width="60">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="删除"
+                                                Command="{Binding DeleteCustomPositionCommand}"                                               
+                                                Width="30" Height="30" 
+                                                Background="White"
+                                                Foreground="Red"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
 
