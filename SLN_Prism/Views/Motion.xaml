@@ -6,8 +6,20 @@
              xmlns:prism="http://prismlibrary.com/" 
              prism:ViewModelLocator.AutoWireViewModel="True"
              xmlns:local="clr-namespace:SLN_Prism.Views"
+             xmlns:inter="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>  
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -217,14 +229,24 @@
                                  Background="LightGray"/>
                         <Label Content="Units/s" Margin="0,20,10,5"/>
                         <Label  Content="设定距离:" Margin="5,20,0,18"/>
-                        <TextBox Text="{Binding dPosition}"
+                        <TextBox Text="{Binding SelectedPosition}"
                                 Width="80" Height="30"
                                 Background="LightGray"/>
                         <Label Content="Units" Margin="0,20,10,18"/>
                         <Label Content="坐标选择:" Margin="5,20,0,0"/>
-                        <ComboBox ItemsSource="{Binding CustomPositionList}"
-                                   SelectedValue="{Binding CustomPosition}"
-                                   Width="80"/>
+                        <ComboBox x:Name="ComboBox"
+                            ItemsSource="{Binding CustomPositions}"
+                                  DisplayMemberPath="Name"
+                                   SelectedValue="{Binding SelectedPosition}"
+                                   SelectedValuePath="Position"
+                                  HorizontalContentAlignment="Center"
+                                   Width="80">
+                            <!--<inter:Interaction.Triggers>
+                                <inter:EventTrigger EventName="SelectClick">
+                                    <inter:InvokeCommandAction Command="{Binding SelectPositionCommand}"  />
+                                </inter:EventTrigger>
+                            </inter:Interaction.Triggers>-->
+                        </ComboBox>
                         <Button Content="复位"
                                 Command="{Binding ClearAlarmCommand}" 
                                 Margin="50,15,15,15"
@@ -272,52 +294,33 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="位置名称:" Margin="5,5,5,5"/>
-                        <TextBox Text="{Binding CustomPositionName}"
-                                 Width="150" Height="30"
-                                 Background="LightGray"/>
+                        <TextBox Text="{Binding CustomPositionNameInput}"
+                                 Width="150" Height="30"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="位置坐标:" Margin="5,5,5,5"/>
-                        <TextBox Text="{Binding CustomPosition}"
-                                 Width="150" Height="30"
-                                 Background="LightGray"/>
+                        <TextBox Text="{Binding CustomPositionInput}"
+                                 Width="150" Height="30"/>
                     </StackPanel>
                     <Button Content="保存位置" 
                             Command="{Binding SaveCustomPositionCommand}"
                             Width="150" Height="40"
                             ToolTip="保存位置坐标(单位: Units),负数表示反方向运动"
                             Margin="5" />
-                    <DataGrid ItemsSource="{Binding CustomPositionList}"
-                              AutoGenerateColumns="False"
-                              CanUserAddRows="False"
+
+                    <DataGrid ItemsSource="{Binding CustomPositionsGrid}"
+                              AutoGenerateColumns="True"
+                              CanUserAddRows="True"
                               CanUserDeleteRows="True"
                               CanUserReorderColumns="False"
                               CanUserResizeColumns="False"
                               CanUserResizeRows="False"
-                              IsReadOnly="True"                                                          
+                              IsReadOnly="True"   
+                              MaxHeight="600"
+                              VerticalScrollBarVisibility="Auto"
                               Margin="5">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="名称" 
-                                                Binding="{Binding Name}"
-                                                Width="60"/>
-                            <DataGridTextColumn Header="坐标"
-                                                Binding="{Binding Position}"
-                                                Width="60"/>
-                            <DataGridTemplateColumn Header="操作"                                               
-                                                Width="60">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="删除"
-                                                Command="{Binding DeleteCustomPositionCommand}"                                               
-                                                Width="30" Height="30" 
-                                                Background="White"
-                                                Foreground="Red"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
                     </DataGrid>
-
+                    
                 </StackPanel>
             </GroupBox>
         </StackPanel>

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace SLN_Prism.Tool
 {
-  public  class listToDT
+  public static  class listToDT
     {
         /// <summary>
         /// 将List转换为DataTable
         /// </summary>
         /// <param name="list">请求数据</param>
         /// <returns></returns>
-        public DataTable ListToDataTable<T>(List<T> list)
+        public static DataTable ListToDataTable<T>(List<T> list)
         {
 
             //创建一个名为"tableName"的空表

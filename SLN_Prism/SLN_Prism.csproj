@@ -23,7 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Login\" />
-    <Folder Include="Models\" />
     <Folder Include="Style\" />
     <Folder Include="Control\" />
     <Folder Include="ViewModels\ShowDialog\" />
