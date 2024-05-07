@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace SLN_Prism.Zmotion
 {
@@ -21,7 +22,7 @@ namespace SLN_Prism.Zmotion
         /// <summary>
         /// 轴类型
         /// </summary>
-        public string axisType { get; set; }
+        public AxisType axisType { get; set; }
         /// <summary>
         /// 轴状态，
         /// </summary>
@@ -33,11 +34,11 @@ namespace SLN_Prism.Zmotion
         /// <summary>
         /// 回原模式
         /// </summary>
-        public int homeType { get; set; }
+        public HomeMode homeType { get; set; }
         /// <summary>
         ///是否运动中
         /// </summary>
-        public int isMoving { get; set; }
+        public bool isMoving { get; set; }
         /// <summary>
         /// 轴使能
         /// </summary>
@@ -85,7 +86,12 @@ namespace SLN_Prism.Zmotion
         /// </summary>
         public double decelSpeed { get; set; }
 
-       
+       public Axis(int index, string axisName=null)
+        {
+            this.index = index;
+            this.axisName = axisName;
+            
+        }
         
         
 
