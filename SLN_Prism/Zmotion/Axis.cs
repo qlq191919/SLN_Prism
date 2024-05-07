@@ -57,7 +57,8 @@ namespace SLN_Prism.Zmotion
         public bool backLimitIoIn { get; set; }
 
         /// <summary>
-        /// 脉冲当量，假设电机 U=3600 脉冲转一圈，丝杠一圈螺距 P=2mm：UNITS=U/360=3600/360=10；//此时 MOVE(1)，电机转 1°        ///UNITS=U/P=3600/2=1800，//此时 MOVE(1)，工作台走 1mm。机台存在减速比时，要把减速比（i）也算上，UNITS=U* i/P=3600*2/2=3600
+        /// 脉冲当量，假设电机 U=3600 脉冲转一圈，丝杠一圈螺距 P=2mm：UNITS=U/360=3600/360=10；//此时 MOVE(1)，电机转 1°
+        ///UNITS=U/P=3600/2=1800，//此时 MOVE(1)，工作台走 1mm。机台存在减速比时，要把减速比（i）也算上，UNITS=U* i/P=3600*2/2=3600
         /// </summary>
         public int axisUnits { get; set; }
         
