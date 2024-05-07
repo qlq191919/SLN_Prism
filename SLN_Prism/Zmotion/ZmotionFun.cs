@@ -64,5 +64,139 @@ namespace SLN_Prism.Zmotion
             Close();  //先关闭已有的连接
             return Connect(ip);  //再重新连接
         }
+        #endregion
+        /// <summary>
+        /// 发送字符串命令到控制器，缓存方式(当控制器没有缓冲时自动阻塞)。
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public bool Execute(string command, StringBuilder str)
+        {
+            ErrorCode = zmcaux.ZAux_Execute(ZMotionCardHandle, command, str, 1000);
+            return ErrorCode == 0;
+        }
+        #region 基本轴参数设置和获取
+
+        /// <summary>
+        /// 设置单轴类型
+        /// </summary>
+        /// <param name="axisIndex">轴号</param>
+        /// <param name="axisType">轴类型</param>
+        /// <returns>操作结果。若设置成功，则为<see cref="true"/>；否则，为<see cref="false"/>。</returns>
+        public bool SetAxisType(int axisIndex, AxisType axisType)
+        {
+            ErrorCode = zmcaux.ZAux_Direct_SetAtype(ZMotionCardHandle, axisIndex, (int)axisType);
+            return ErrorCode == 0;
+        }
+        /// <summary>
+        /// 设置单轴脉冲当量
+        /// </summary>
+        /// <param name="axisIndex">轴号</param>
+        /// <param name="units">轴脉冲当量</param>
+        /// <returns>操作结果。若设置成功，则为<see cref="true"/>；否则，为<see cref="false"/>。</returns>
+        public bool SetAxisUnits(int axisIndex, float units)
+        {
+            ErrorCode = zmcaux.ZAux_Direct_SetUnits(ZMotionCardHandle, axisIndex, units);
+            return ErrorCode == 0;
+        }
+        /// <summary>
+        /// 设置单轴速度
+        /// </summary>
+        /// <param name="axisIndex">轴号</param>
+        /// <param name="speed">轴速度</param>
+        /// <returns>操作结果。若设置成功，则为<see cref="true"/>；否则，为<see cref="false"/>。</returns>
+        public bool SetAxisSpeed(int axisIndex, float speed)
+        {
+            ErrorCode = zmcaux.ZAux_Direct_SetSpeed(ZMotionCardHandle, axisIndex, speed);
+            return ErrorCode == 0;
+        }
+
+        /// <summary>
+        /// 设置单轴加速度
+        /// </summary>
+        /// <param name="axisIndex">轴号</param>
+        /// <param name="accel">轴加速度</param>
+        /// <returns>操作结果。若设置成功，则为<see cref="true"/>；否则，为<see cref="false"/>。</returns>
+        public bool SetAxisAccelSpeed(int axisIndex, float accel)
+        {
+            ErrorCode = zmcaux.ZAux_Direct_SetAccel(ZMotionCardHandle, axisIndex, accel);
+            return ErrorCode == 0;
+        }
+        /// <summary>
+        /// 设置单轴减速度
+        /// </summary>
+        /// <param name="axisIndex">轴号</param>
+        /// <param name="decel">轴减速度</param>
+        /// <returns>操作结果。若设置成功，则为<see cref="true"/>；否则，为<see cref="false"/>。</returns>
+        public bool SetAxisDecelSpeed(int axisIndex, float decel)
+        {
+            ErrorCode = zmcaux.ZAux_Direct_SetDecel(ZMotionCardHandle, axisIndex, decel);
+            return ErrorCode == 0;
+        }
+        /// <summary>
+        /// 获取单轴脉冲当量
+        /// </summary>
+        /// <param name="axisIndex">轴号</param>
+        /// <param name="units">轴脉冲当量</param>
+        /// <returns>操作结果。若获取成功，则为<see cref="true"/>；否则，为<see cref="false"/>。</returns>
+        public bool GetAxisUnits(int axisIndex, out float units)
+        {
+            units = float.NaN;
+            ErrorCode = zmcaux.ZAux_Direct_GetUnits(ZMotionCardHandle, axisIndex, ref units);
+            return ErrorCode == 0;
+        }
+        /// <summary>
+        /// 获取单轴速度
+        /// </summary>
+        /// <param name="axisIndex">轴号</param>
+        /// <param name="speed">轴速度</param>
+        /// <returns>操作结果。若获取成功，则为<see cref="true"/>；否则，为<see cref="false"/>。</returns>
+        public bool GetAxisSpeed(int axisIndex, out float speed)
+        {
+            speed = float.NaN;
+            ErrorCode = zmcaux.ZAux_Direct_GetSpeed(ZMotionCardHandle, axisIndex, ref speed);
+            return ErrorCode == 0;
+        }
+        /// <summary>
+        /// 获取轴的Speed和MSpeed
+        /// </summary>
+        /// <param name="axisIndex">轴号</param>
+        /// <param name="speed">speed</param>
+        /// <param name="mSpeed">mSpeed</param>
+        /// <returns>操作结果。若获取成功，则为<see cref="true"/>；否则，为<see cref="false"/>。</returns>
+        public bool GetAxisSpeed(int axisIndex, out float speed, out float mSpeed)
+        {
+            mSpeed = float.NaN;
+            return GetAxisSpeed(axisIndex, out speed) && GetAxisMSpeed(axisIndex, out mSpeed);
+        }
+        /// <summary>
+        /// 获取单轴加速度
+        /// </summary>
+        /// <param name="axisIndex">轴号</param>
+        /// <param name="accel">轴加速度</param>
+        /// <returns>操作结果。若获取成功，则为<see cref="true"/>；否则，为<see cref="false"/>。</returns>
+        public bool GetAxisAccel(int axisIndex, out float accel)
+        {
+            accel = float.NaN;
+            ErrorCode = zmcaux.ZAux_Direct_GetAccel(ZMotionCardHandle, axisIndex, ref accel);
+            return ErrorCode == 0;
+        }
+        /// <summary>
+        /// 获取单轴减速度
+        /// </summary>
+        /// <param name="axisIndex">轴号</param>
+        /// <param name="decel">轴减速度</param>
+        /// <returns>操作结果。若获取成功，则为<see cref="true"/>；否则，为<see cref="false"/>。</returns>
+        public bool GetAxisDecel(int axisIndex, out float decel)
+        {
+            decel = float.NaN;
+           ErrorCode =zmcaux.ZAux_Direct_GetDecel(ZMotionCardHandle, axisIndex, ref decel);
+            return ErrorCode == 0;
+        }
+
+        #endregion 基本轴参数设置和获取
+
+#endregion 方法
     }
 }
