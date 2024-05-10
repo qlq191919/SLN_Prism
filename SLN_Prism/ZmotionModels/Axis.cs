@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace SLN_Prism.Zmotion
+namespace SLN_Prism.ZmotionModels
 {
    
     public class Axis

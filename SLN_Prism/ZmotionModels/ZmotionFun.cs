@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SLN_Prism.Zmotion
+namespace SLN_Prism.ZmotionModels
 {
     public class ZmotionFun
     {/// <summary>
