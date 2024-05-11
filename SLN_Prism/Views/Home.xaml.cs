@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SLN_Prism.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace SLN_Prism.Views
         public Home()
         {
             InitializeComponent();
+            LoggerHelper.Info("HomeViewModel created");
+            LoggerHelper.Error("HomeViewModel created");
         }
     }
 }

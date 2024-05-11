@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SLN_Prism.Common;
 
 namespace SLN_Prism.ViewModels
 {
@@ -14,20 +15,22 @@ namespace SLN_Prism.ViewModels
     {
         public TESTViewModel()
         {
-            logging  log= new logging(@"D:\TEST\log.txt");
-            historyAlarm history = new historyAlarm(@"D:\TEST\history.txt");
+           
+            
             
             logWriteCommand = new DelegateCommand(() =>
             {
-               log.WriteLog(Text1,Text2);
+               LoggerHelper.Info(Text1);
+                LoggerHelper.Error(Text2);
+                LoggerHelper.Debug("Debug");
             });
             logReadCommand = new DelegateCommand(() =>
             {
-               Dtdate = log.ReadLogDt(DateTime.Now.AddDays(-1),DateTime.Now);
+              
             });
             historyAlarmCommand = new DelegateCommand(() =>
             {
-                history.ReadLogDt(DateTime.Now.AddDays(-1), DateTime.Now);
+                
             }); 
 
         }

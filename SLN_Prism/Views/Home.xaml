@@ -115,8 +115,16 @@
                 </GroupBox>
             </StackPanel>
         </GroupBox>
-        <GroupBox Grid.Row="0" Grid.Column="1" Header="报警信息" FontSize="14">
-            <ItemsControl Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Alarms}">
+        <GroupBox Grid.Row="0" Grid.Column="1" Header="日志信息" FontSize="14">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,0,20,0">
+                    <Label Content="日志显示: " Margin="5,0,20,0"/>
+                    <RadioButton Content="全部日志" IsChecked="True" GroupName="log" Command="{Binding ShowAllLogCommand}"/>
+                    <RadioButton Content="错误日志" GroupName="log" Command="{Binding ShowErrorLogCommand}"/>
+               </StackPanel>
+                <RichTextBox x:Name="LogRichTextBox" FontSize ="14"  Background="LightGray" Height="70"  />
+            </StackPanel>
+            <!--<ItemsControl Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Alarms}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid ShowGridLines="True">
@@ -151,7 +159,7 @@
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            </ItemsControl>-->
         </GroupBox>
         <GroupBox Grid.Row="0" Grid.Column="2" Header="控制台" FontSize="14">
             <StackPanel>
