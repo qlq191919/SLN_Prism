@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ namespace SLN_Prism.ViewModels {
 {
         public MDViewModel()
         {
+            Items = new ObservableCollection<string>();
+            Items.Add("Item1");
             Title = "TEST";
             Message = "This is a readonly message.";
             UpdateCommand = new DelegateCommand(() => { Message = "updated message.\r\n"; });
@@ -35,6 +38,7 @@ namespace SLN_Prism.ViewModels {
             set { _message = value; RaisePropertyChanged(); }
         }
 
+        public ObservableCollection<string> Items { get; set; }
         public DelegateCommand UpdateCommand { get; private set; }
         public DelegateCommand UpdateCommand1 { get; private set; }
         public DelegateCommand UpdateCommand2 { get; private set; }

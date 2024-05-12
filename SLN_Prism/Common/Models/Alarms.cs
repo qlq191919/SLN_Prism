@@ -9,8 +9,7 @@ namespace SLN_Prism.Common.Models
     public class Alarms
     {
         public string level { get; set; }
-        public string message { get; set; }
-        public string address { get; set; }
+        public string message { get; set; }     
         public DateTime time { get; set; }
     }
 }

@@ -24,8 +24,7 @@ namespace SLN_Prism.Views
         public Home()
         {
             InitializeComponent();
-            LoggerHelper.Info("HomeViewModel created");
-            LoggerHelper.Error("HomeViewModel created");
+            
         }
     }
 }

@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NLog.Config;
+using SLN_Prism.Common.Models;
+using SLN_Prism.ViewModels;
+using Prism.Mvvm;
 
 namespace SLN_Prism.Common
 {
-    public class LoggerHelper
+    public class LoggerHelper:BindableBase
     {
         private static readonly Lazy<ILogger> LazyLogger = new Lazy<ILogger>(LogManager.GetCurrentClassLogger);
 
@@ -19,14 +22,25 @@ namespace SLN_Prism.Common
             if (!string.IsNullOrEmpty(message))
             {
                 Default.Info(message);
+                Alarms a = new Alarms();
+                a.message = message;
+                a.level = "信息";
+                a.time = DateTime.Now;
+                HomeViewModel.LogText.Add(a);
             }
         }
+
 
         public static void Warn(string message)
         {
             if (!string.IsNullOrEmpty(message))
             {
                 Default.Warn(message);
+                Alarms a = new Alarms();
+                a.message = message;
+                a.level = "警告";
+                a.time = DateTime.Now;
+                HomeViewModel.LogText.Add(a);
             }
         }
 
@@ -35,6 +49,7 @@ namespace SLN_Prism.Common
             if (!string.IsNullOrEmpty(message))
             {
                 Default.Debug(message);
+                
             }
         }
 
@@ -45,6 +60,11 @@ namespace SLN_Prism.Common
                 if (exception == null)
                 {
                     Default.Error(message);
+                    Alarms a = new Alarms();
+                    a.message = message;
+                    a.level = "故障";
+                    a.time = DateTime.Now;
+                    HomeViewModel.LogText.Add(a);
                 }
                 else
                 {

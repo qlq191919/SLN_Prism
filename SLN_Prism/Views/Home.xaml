@@ -9,6 +9,24 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="LevelToColorConverter" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="White"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding level}" Value="信息">
+                        <Setter Property="Foreground" Value="White"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding level}" Value="警告">
+                        <Setter Property="Foreground" Value="Orange"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding level}" Value="故障">
+                        <Setter Property="Foreground" Value="Red"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
@@ -23,8 +41,8 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Content="Local连接:" Margin="5"/>
-                    <Button Content="{Binding LocalConnectionStatus}"
-                        Command="{Binding LocalConnectCommand}"
+                    <Button Content="Test"
+                        Command="{Binding TestCommand}"
                         Width="80" />
                 </StackPanel>
                 <Border Height="1" Margin="5" Background="Gray" />
@@ -116,67 +134,53 @@
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Row="0" Grid.Column="1" Header="日志信息" FontSize="14">
-            <StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5,0,20,0">
-                    <Label Content="日志显示: " Margin="5,0,20,0"/>
-                    <RadioButton Content="全部日志" IsChecked="True" GroupName="log" Command="{Binding ShowAllLogCommand}"/>
-                    <RadioButton Content="错误日志" GroupName="log" Command="{Binding ShowErrorLogCommand}"/>
-               </StackPanel>
-                <RichTextBox x:Name="LogRichTextBox" FontSize ="14"  Background="LightGray" Height="70"  />
-            </StackPanel>
-            <!--<ItemsControl Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Alarms}">
+
+            <ListBox FontSize ="16"                              
+                            ItemsSource="{Binding LogText}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid ShowGridLines="True">
+                        <Grid Margin="5,0,20,0" ShowGridLines="True" >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition />
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="180"/>
                             </Grid.ColumnDefinitions>
-                            <Border Width="9" Height="9" Background="IndianRed" CornerRadius="3"
-                                VerticalAlignment="Center" 
-                                HorizontalAlignment="Center"
-                                Margin="5"/>
-                            <TextBlock Text="{Binding level}" Grid.Column="1"
-                                   VerticalAlignment="Center"
-                                    HorizontalAlignment="Center" 
-                                   Margin="5"/>
-
-                            <TextBlock Text="{Binding message}" Grid.Column="3"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   Margin="5"/>
-                            <TextBlock Text="{Binding address}" Grid.Column="2"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   Margin="5"/>
-                            <TextBlock Text="{Binding time}" Grid.Column="4" 
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   Margin="5"/>
+                            <TextBlock Grid.Column="0"
+                                          Text="{Binding level}"                                          
+                                          Style="{StaticResource LevelToColorConverter}"
+                                           Width="80"
+                                           TextAlignment="Center"/>
+                            <TextBlock Grid.Column="1"
+                                             Text="{Binding message}"
+                                           Style="{StaticResource LevelToColorConverter}"
+                                           MinWidth="500"
+                                           TextAlignment="Center"
+                                           Margin="20,0,20,0"/>
+                            <TextBlock Grid.Column="2"
+                                            Text="{Binding time}"                                            
+                                           Style="{StaticResource LevelToColorConverter}"
+                                           Width="250" />
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-            </ItemsControl>-->
+            </ListBox>
         </GroupBox>
         <GroupBox Grid.Row="0" Grid.Column="2" Header="控制台" FontSize="14">
             <StackPanel>
                 <StackPanel Orientation="Vertical"  Margin="5">
                     <StackPanel Orientation="Horizontal" Margin="5">
-                    <Button Content="复位"
+                        <Button Content="复位"
                             Command="{Binding ResetCommand}"
                             Width="70" 
                             Margin="5"
                              IsEnabled="{Binding IsEnabled}"/>
-                    <Button Content="启动"
+                        <Button Content="启动"
                             Command="{Binding StartCommand}"
                             Width="70"
                              Margin="5"
                              IsEnabled="{Binding IsEnabled}"/>
                     </StackPanel>
-                   
+
                     <Button Content="急停"
                             ToolTip="急停后，所有轴停止工作，直到复位命令"
                             Background="PaleVioletRed"
@@ -184,8 +188,8 @@
                             Width="150"
                              Margin="5"
                                 IsEnabled="{Binding IsEnabled}"/>
-                    </StackPanel>
                 </StackPanel>
-            </GroupBox>
+            </StackPanel>
+        </GroupBox>
     </Grid>
 </UserControl>
