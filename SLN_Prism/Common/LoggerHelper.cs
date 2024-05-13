@@ -11,6 +11,9 @@ using Prism.Mvvm;
 
 namespace SLN_Prism.Common
 {
+    /// <summary>
+    /// 日志帮助类(封装Nlog，提供日志记录方法，暂时未完全解耦）
+    /// </summary>
     public class LoggerHelper:BindableBase
     {
         private static readonly Lazy<ILogger> LazyLogger = new Lazy<ILogger>(LogManager.GetCurrentClassLogger);

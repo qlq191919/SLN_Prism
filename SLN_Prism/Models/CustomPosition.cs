@@ -1,6 +1,7 @@
 ﻿using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,26 @@ namespace SLN_Prism.Models
         {
             get { return _position; }
             set {_position = value; RaisePropertyChanged(); }
+        }
+    }
+
+    public class CustomPositionCollection : BindableBase
+    {
+        private ObservableCollection<CustomPosition> _positions;
+        public ObservableCollection<CustomPosition> Positions
+        {
+            get { return _positions; }
+            set { _positions = value; RaisePropertyChanged(); }
+        }
+    }
+
+    public class CustomPositionCombine:BindableBase
+    {
+        private ObservableCollection<CustomPositionCollection> _positionsCollections;
+        public ObservableCollection<CustomPositionCollection> PositionsCollections
+        {
+            get { return _positionsCollections; }
+            set { _positionsCollections = value; RaisePropertyChanged(); }
         }
     }
 }

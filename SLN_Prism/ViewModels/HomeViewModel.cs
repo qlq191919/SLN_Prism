@@ -25,9 +25,9 @@ namespace SLN_Prism.ViewModels
                 
                     LoggerHelper.Error("T Error");                  
                 LoggerHelper.Error("T1111 Error");
-                LoggerHelper.Error("T Error");
-                LoggerHelper.Error("T1111 Error"); 
-                LoggerHelper.Error("T Error");
+                LoggerHelper.Info("Tinfo");
+                LoggerHelper.Warn("T1111 Warn");
+                LoggerHelper.Warn("T Warnnnnnn");
                 LoggerHelper.Error("T1111 Error");
 
             });

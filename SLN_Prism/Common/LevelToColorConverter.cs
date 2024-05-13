@@ -12,6 +12,14 @@ namespace SLN_Prism.Common
 {
     public class LevelToColorConverter : IValueConverter
     {
+        /// <summary>
+        /// 字符串转颜色，实际在XAML中使用触发器达到了同样的效果
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             
