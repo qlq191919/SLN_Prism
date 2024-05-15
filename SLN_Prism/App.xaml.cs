@@ -16,7 +16,10 @@ namespace SLN_Prism
     /// </summary>
     public partial class App: PrismApplication
     {
-        
+        /// <summary>
+        /// 从容器中解析实例，作为主窗口
+        /// </summary>
+        /// <returns></returns>
         protected override Window CreateShell()
         {
             return Container.Resolve<MainWindow>();
@@ -37,7 +40,7 @@ namespace SLN_Prism
 
         
         /// <summary>
-        /// 依赖注入
+        /// 注册视图和视图间的依赖关系
         /// </summary>
         /// <param name="containerRegistry"></param>
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -54,7 +57,10 @@ namespace SLN_Prism
 
             
         }
-
+        /// <summary>
+        /// 注册模块
+        /// </summary>
+        /// <param name="moduleCatalog"></param>
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             moduleCatalog.AddModule<ModuleAModule>();
