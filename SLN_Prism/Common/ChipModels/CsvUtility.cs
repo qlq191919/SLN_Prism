@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SLN_Prism.ChipModels
+namespace SLN_Prism.Common.ChipModels
 {
 
     public static class CsvUtility
