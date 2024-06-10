@@ -6,17 +6,43 @@
              xmlns:local="clr-namespace:SLN_Prism.Views"
              xmlns:prism="http://prismlibrary.com/" 
                 prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:pass="clr-namespace:SLN_Prism.Extensions"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              d:DesignHeight="800" d:DesignWidth="450">
-    
-    <materialDesign:Card UniformCornerRadius="15" 
-                     Background="{DynamicResource MaterialDesignPaper}"
-                     Margin="25"
-                     materialDesign:ShadowAssist.ShadowDepth="Depth4">
+    <prism:Dialog.WindowStyle>
+        <Style TargetType="Window">
+            <Setter Property="Width"
+                    Value="450" />
+            <Setter Property="Height"
+                    Value="800" />
+            <Setter Property="ResizeMode"
+                    Value="NoResize" />
+            <Setter Property="SizeToContent"
+                    Value="WidthAndHeight" />
+            <Setter Property="prism:Dialog.WindowStartupLocation"
+                    Value="CenterScreen" />
+            <Setter Property="Padding"
+                    Value="25" />
+
+        </Style>
+    </prism:Dialog.WindowStyle>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+    </UserControl.Resources>
+    <!--<materialDesign:Card UniformCornerRadius="15"
+                         Background="{DynamicResource MaterialDesignPaper}"
+                         Margin="25">-->
+        <!--materialDesign:ShadowAssist.ShadowDepth="Depth4"-->
         <materialDesign:DialogHost CloseOnClickAway="True" 
                                x:Name="DialogHost">
+        <Border Margin="50,-50,50,50" BorderThickness="0" >
             <StackPanel>
                 <Image Margin="0,60,0,5" 
                    Source="/Assets/Logo.png" Height="100"></Image>
@@ -32,20 +58,26 @@
                        Text="苏州索莱能智能科技有限公司"></TextBlock>
 
                 <TextBox Margin="0,50,0,0" 
-                     Text="" x:Name="txtUsername" 
+                     Text="{Binding Username}" x:Name="txtUsername" 
                      Width="300" FontSize="18"
                      materialDesign:HintAssist.Hint="输入用户名" 
                      BorderThickness="2" 
                      BorderBrush="{DynamicResource MaterialDesignDivider}"  
                      Style="{StaticResource MaterialDesignOutlinedTextBox}" />
 
-                <PasswordBox Margin="0,20,0,0" 
-                         x:Name="txtPassword" 
-                         Width="300" FontSize="18" 
-                         materialDesign:HintAssist.Hint="输入密码" 
-                         BorderThickness="2" 
-                         BorderBrush="{DynamicResource MaterialDesignDivider}"
-                         Style="{StaticResource MaterialDesignOutlinedPasswordBox}"/>
+                <PasswordBox Margin="0,20,0,0"
+                             x:Name="txtPassword"
+                             pass:PassWordExtensions.PassWord="{Binding Password ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Width="300"
+                             FontSize="18"
+                             materialDesign:HintAssist.Hint="输入密码"
+                             BorderThickness="2"
+                             BorderBrush="{DynamicResource MaterialDesignDivider}"
+                             Style="{StaticResource MaterialDesignOutlinedPasswordBox}">
+                    <i:Interaction.Behaviors>
+                        <pass:PasswordBehavior />
+                    </i:Interaction.Behaviors>
+                </PasswordBox>
 
                 <Button  Margin="0,20,0,0" 
                      x:Name="loginBtn" 
@@ -53,7 +85,9 @@
                      materialDesign:ShadowAssist.ShadowDepth="Depth0" 
                      Height="53" Width="300" 
                      materialDesign:ButtonAssist.CornerRadius="10"
-                     FontSize="18" Content="登录" Cursor="Hand" ></Button>
+                     FontSize="18" Content="登录" Cursor="Hand" 
+                         Command="{Binding ExecuteCommand}"
+                         CommandParameter="Login"></Button>
 
                 <Button Margin="0,20,0,0" 
                     x:Name="signupBtn"
@@ -61,10 +95,13 @@
                     materialDesign:ShadowAssist.ShadowDepth="Depth0"
                     Height="53" Width="300" 
                     materialDesign:ButtonAssist.CornerRadius="10" 
-                    FontSize="18" Content="取消登录"></Button>
+                    FontSize="18" Content="取消登录"
+                        Command="{Binding ExecuteCommand}"
+                        CommandParameter="LoginOut"></Button>
 
 
             </StackPanel>
-        </materialDesign:DialogHost>
-    </materialDesign:Card>
+        </Border>
+    </materialDesign:DialogHost>
+    <!--</materialDesign:Card>-->
 </UserControl>

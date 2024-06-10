@@ -14,7 +14,7 @@ namespace SLN_Prism
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App: PrismApplication
+    public partial class App : PrismApplication
     {
         /// <summary>
         /// 从容器中解析实例，作为主窗口
@@ -29,16 +29,26 @@ namespace SLN_Prism
         /// </summary>
         protected override void OnInitialized()
         {
-           
+
+            var dialog = Container.Resolve<IDialogService>();
+            dialog.ShowDialog("Login", callback =>
+            {
+                if (callback.Result != ButtonResult.OK)
+                {
+                    Environment.Exit(0);
+                    return;
+                }
 
                 var service = App.Current.MainWindow.DataContext as IConfigureService;
                 if (service != null)
                     service.Configure();
                 base.OnInitialized();
-           
-            }
+            });
 
-        
+
+        }
+
+
         /// <summary>
         /// 注册视图和视图间的依赖关系
         /// </summary>
@@ -47,15 +57,15 @@ namespace SLN_Prism
         {
             containerRegistry.RegisterForNavigation<Home, HomeViewModel>();
             containerRegistry.RegisterForNavigation<Motion, MotionViewModel>();
-            containerRegistry.RegisterForNavigation<Operation,OperationViewModel>();
+            containerRegistry.RegisterForNavigation<Operation, OperationViewModel>();
             containerRegistry.RegisterForNavigation<Settings, SettingsViewModel>();
             containerRegistry.RegisterForNavigation<Monitoring, MonitoringViewModel>();
             containerRegistry.RegisterForNavigation<Vision, VisionViewModel>();
             containerRegistry.RegisterForNavigation<Alarm, AlarmViewModel>();
             containerRegistry.RegisterForNavigation<TEST, TESTViewModel>();
-            containerRegistry.RegisterForNavigation<Login, LoginViewModel>();
+            //containerRegistry.RegisterForNavigation<Login, LoginViewModel>();
+            containerRegistry.RegisterDialog<Login, LoginViewModel>();
 
-            
         }
         /// <summary>
         /// 注册模块

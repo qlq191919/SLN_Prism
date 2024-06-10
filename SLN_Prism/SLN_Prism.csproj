@@ -3,6 +3,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>TB2843.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\1.png" />
@@ -16,6 +17,9 @@
     <None Remove="Assets\导航收起.png" />
     <None Remove="Assets\注销.png" />
     <None Remove="Assets\注销红.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TB2843.ico" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
